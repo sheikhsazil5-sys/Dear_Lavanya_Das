@@ -1,5 +1,5 @@
 /* ===========================
-   Dear Disha
+   Dear Lavanya Das
    Script.js
 =========================== */
 // Falling Petals
@@ -182,7 +182,7 @@ const finalPopup = document.getElementById("finalPopup");
 const finalText = document.getElementById("finalText");
 const closeFinal = document.getElementById("closeFinal");
 
-const finalMessage = `Dear Disha ❤️
+const finalMessage = `Dear Lavanya Das ❤️
 
 Thank you for being one of the most beautiful chapters of my life.
 
@@ -283,7 +283,7 @@ const readMore = document.getElementById("readMore");
 const hiddenLetter = document.getElementById("hiddenLetter");
 const hiddenText = document.getElementById("hiddenText");
 
-const fullLetter = `Dear Disha❤️
+const fullLetter = `Dear Lavanya Das❤️
 
 Some people become memories.
 
@@ -478,7 +478,7 @@ finalMusic.play().catch(()=>{});
 
     setTimeout(()=>{
 
-        alert("🌸 Some memories never fade...\n\nThey bloom forever.\n\n❤️ Thank You, Disha❤️");
+        alert("🌸 Some memories never fade...\n\nThey bloom forever.\n\n❤️ Thank You, Lavanya Das❤️");
 
     },3500);
 
