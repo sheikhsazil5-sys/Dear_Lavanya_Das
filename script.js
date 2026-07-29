@@ -649,12 +649,8 @@ document.addEventListener("keydown",(e)=>{
 
 });
 /* ==========================================
-   PART 5
-   MEMORY JAR + ROSE RAIN + INIT
-========================================== */
-
-/* ==========================================
-   MEMORY JAR
+   PART 5 V2
+   MEMORY JAR + CINEMATIC ROSE RAIN
 ========================================== */
 
 const jarHearts = document.getElementById("jarHearts");
@@ -664,11 +660,15 @@ const openJar = document.getElementById("openJar");
 let memories = 0;
 const maxMemories = 5;
 
+/* ==========================================
+   MEMORY COUNTER
+========================================== */
+
 function updateMemoryCounter(){
 
     if(memoryCount){
 
-        memoryCount.textContent = memories;
+        memoryCount.innerText = memories;
 
     }
 
@@ -682,29 +682,21 @@ function addMemory(){
 
     updateMemoryCounter();
 
-    if(jarHearts){
+    const heart = document.createElement("div");
 
-        const heart = document.createElement("div");
+    heart.className = "jar-heart";
 
-        heart.className = "jar-heart";
+    heart.innerHTML = "❤️";
 
-        heart.innerHTML = "❤️";
+    jarHearts.appendChild(heart);
 
-        jarHearts.appendChild(heart);
-
-    }
-
-    if(memories === maxMemories && openJar){
+    if(memories === maxMemories){
 
         openJar.classList.add("ready");
 
     }
 
 }
-
-/* ==========================================
-   DEMO
-========================================== */
 
 const memoryTimer = setInterval(()=>{
 
@@ -718,57 +710,87 @@ const memoryTimer = setInterval(()=>{
 
 },2000);
 
+
 /* ==========================================
-   ROSE PETAL RAIN
+   ORIGINAL CINEMATIC ROSE RAIN
 ========================================== */
 
-const petalImages=[
+const petalImages = [
 
-"assets/images/petal1.png",
-"assets/images/petal2.png",
-"assets/images/petal3.png",
-"assets/images/petal4.png"
+    "assets/images/petal1.png",
+    "assets/images/petal2.png",
+    "assets/images/petal3.png",
+    "assets/images/petal4.png"
 
 ];
 
 function roseRain(){
 
-    for(let i=0;i<180;i++){
+    for(let i=0;i<220;i++){
 
         const petal=document.createElement("img");
 
-        petal.src=
+        petal.src =
         petalImages[
             Math.floor(Math.random()*petalImages.length)
         ];
 
-        petal.className="rose-petal";
+        const size=12+Math.random()*35;
+        const drift=(Math.random()-0.5)*900;
+        const duration=7000+Math.random()*5000;
+        const rotate=Math.random()*1440-720;
+        const delay=Math.random()*4000;
 
+        petal.style.position="fixed";
         petal.style.left=Math.random()*100+"vw";
-
-        petal.style.width=
-            (12+Math.random()*30)+"px";
-
-        petal.style.animationDuration=
-            (6+Math.random()*4)+"s";
-
-        petal.style.animationDelay=
-            Math.random()*2+"s";
-
-        petal.style.transform=
-            `rotate(${Math.random()*360}deg)`;
+        petal.style.top="-80px";
+        petal.style.width=size+"px";
+        petal.style.pointerEvents="none";
+        petal.style.zIndex="99999";
+        petal.style.opacity="0";
 
         document.body.appendChild(petal);
 
-        petal.addEventListener("animationend",()=>{
+        setTimeout(()=>{
+
+            petal.style.opacity="1";
+
+            petal.animate([
+
+                {
+
+                    transform:"translate(0,0) rotate(0deg)",
+                    opacity:1
+
+                },
+
+                {
+
+                    transform:`translate(${drift}px,120vh) rotate(${rotate}deg)`,
+                    opacity:0
+
+                }
+
+            ],{
+
+                duration:duration,
+                easing:"ease-in-out",
+                fill:"forwards"
+
+            });
+
+        },delay);
+
+        setTimeout(()=>{
 
             petal.remove();
 
-        });
+        },duration+delay);
 
     }
 
 }
+
 
 /* ==========================================
    MEMORY JAR OPEN
@@ -790,11 +812,13 @@ if(openJar){
 
             bgMusic.pause();
 
+            bgMusic.currentTime=0;
+
         }
 
         if(finalMusic){
 
-            finalMusic.currentTime = 0;
+            finalMusic.currentTime=0;
 
             finalMusic.play().catch(()=>{});
 
@@ -802,19 +826,25 @@ if(openJar){
 
         roseRain();
 
-        setTimeout(roseRain,2000);
+        setTimeout(()=>{
 
-        setTimeout(roseRain,4000);
+            roseRain();
+
+        },2500);
 
         setTimeout(()=>{
 
-            alert(`🌸
+            roseRain();
 
-Some memories never fade...
+        },5000);
+
+        setTimeout(()=>{
+
+            alert(`🌸 Some memories never fade...
 
 They bloom forever.
 
-❤️ Thank You Lavanya Das ❤️`);
+❤️ Thank You, Lavanya Das ❤️`);
 
         },3500);
 
@@ -822,31 +852,15 @@ They bloom forever.
 
 }
 
+
 /* ==========================================
-   INITIALIZE WEBSITE
+   INIT
 ========================================== */
 
-function initWebsite(){
+document.addEventListener("DOMContentLoaded",()=>{
 
     updateMemoryCounter();
 
-    console.log(
-        "%cDear Lavanya Das ❤️",
-        "color:#ff5fa2;font-size:20px;font-weight:bold;"
-    );
+    console.log("Dear Lavanya Das ❤️ Loaded");
 
-    console.log(
-        "%cWebsite Loaded Successfully",
-        "color:#9cffb2;font-size:15px;"
-    );
-
-}
-
-document.addEventListener(
-    "DOMContentLoaded",
-    initWebsite
-);
-
-/* ==========================================
-   END OF SCRIPT
-========================================== */
+});
