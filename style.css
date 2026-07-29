@@ -388,7 +388,9 @@ width:100%;
         0 0 60px rgba(255,105,180,.10);
 }
 .story-card{
-    background: rgba(255,255,255,.08);
+    .story-card{
+    background:rgba(255,255,255,.10);
+    backdrop-filter:blur(20px);
     border:1px solid rgba(255,255,255,.08);
     transition:.4s;
 }
