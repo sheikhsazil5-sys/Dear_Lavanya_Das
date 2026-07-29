@@ -8,12 +8,17 @@
 
 :root{
 
---bg:#FFF8F5;
---card:#ffffffa6;
---rose:#E75480;
---text:#4B3742;
---light:#7d6772;
---shadow:0 25px 60px rgba(231,84,128,.15);
+--bg:#140617;
+
+--card:rgba(255,255,255,.08);
+
+--rose:#FF5C9A;
+
+--text:#FFF5FA;
+
+--light:#EBC7D7;
+
+--shadow:0 25px 70px rgba(255,92,154,.20);
 
 }
 
