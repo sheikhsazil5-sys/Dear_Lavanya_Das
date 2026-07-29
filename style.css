@@ -129,10 +129,11 @@ background: rgba(255,255,255,0.05);
 backdrop-filter: blur(28px);
 -webkit-backdrop-filter: blur(28px);
 
-border: 1px solid rgba(255,255,255,0.15);
+border: 1px solid rgba(255,255,255,.10);
+
 box-shadow:
-0 25px 80px rgba(0,0,0,.45),
-0 0 60px rgba(255,105,180,.25),
+0 30px 80px rgba(0,0,0,.45),
+0 0 60px rgba(255,105,180,.20);
 0 0 120px rgba(186,85,211,.15);
 
 animation:fadeUp 1.3s ease;
@@ -152,6 +153,30 @@ animation:fadeUp 1.3s ease;
     pointer-events:none;
 }
 
+.glass-card::after{
+    content:"";
+    position:absolute;
+    width:350px;
+    height:350px;
+    border-radius:50%;
+    background:radial-gradient(circle,
+        rgba(255,105,180,.22),
+        transparent 70%);
+    filter:blur(50px);
+    top:-120px;
+    right:-120px;
+    animation: glowMove 8s ease-in-out infinite alternate;
+    z-index:-1;
+}
+
+@keyframes glowMove{
+    from{
+        transform:translate(-20px,-10px) scale(1);
+    }
+    to{
+        transform:translate(20px,20px) scale(1.2);
+    }
+}
 
 /* Small Tag */
 
