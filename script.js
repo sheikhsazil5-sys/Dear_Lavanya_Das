@@ -18,6 +18,7 @@ const petals = document.querySelector(".petals");
 // ===============================
 
 const lights = document.querySelector(".lights");
+setInterval(createPetal,500);
 
 function createLight(){
 
