@@ -379,16 +379,25 @@ width:100%;
 ========================================== */
 
 .story{
-
-padding:120px 25px;
-
-text-align:center;
-
-max-width:900px;
-
-margin:auto;
-
+    background: rgba(255,255,255,.05);
+    backdrop-filter: blur(24px);
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 40px;
+    box-shadow:
+        0 30px 80px rgba(0,0,0,.35),
+        0 0 60px rgba(255,105,180,.10);
 }
+.story-card{
+    background: rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.08);
+    transition:.4s;
+}
+
+.story-card:hover{
+    transform:translateY(-10px);
+    box-shadow:0 20px 40px rgba(255,105,180,.20);
+}
+
 
 .story span{
 
@@ -415,9 +424,18 @@ margin-bottom:25px;
 .story p{
 
 max-width:650px;
-
+ color:#f4dce7;
 margin:auto;
 
+}
+.story-card .icon{
+    animation: floatIcon 3s ease-in-out infinite;
+}
+
+@keyframes floatIcon{
+    50%{
+        transform:translateY(-6px);
+    }
 }
 
 /* ==========================================
