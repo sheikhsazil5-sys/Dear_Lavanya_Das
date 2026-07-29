@@ -1908,3 +1908,24 @@ button:hover{
     }
 
 }
+/* ==========================================
+   ROSE PETALS
+========================================== */
+
+.petal{
+
+    position: fixed;
+
+    top: -60px;
+
+    pointer-events: none;
+
+    user-select: none;
+
+    z-index: -1;
+
+    opacity: .95;
+
+    will-change: transform, opacity;
+
+}
