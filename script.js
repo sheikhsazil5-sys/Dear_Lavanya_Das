@@ -16,7 +16,6 @@ const petals = document.querySelector(".petals");
 // ===============================
 // Floating Light Particles
 // ===============================
-setInterval(createPetal,500);
 
 const lights = document.querySelector(".lights");
 
