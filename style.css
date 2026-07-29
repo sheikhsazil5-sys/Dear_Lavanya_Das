@@ -387,14 +387,13 @@ width:100%;
         0 30px 80px rgba(0,0,0,.35),
         0 0 60px rgba(255,105,180,.10);
 }
+
 .story-card{
-    .story-card{
     background:rgba(255,255,255,.10);
     backdrop-filter:blur(20px);
     border:1px solid rgba(255,255,255,.08);
     transition:.4s;
 }
-
 .story-card:hover{
     transform:translateY(-10px);
     box-shadow:0 20px 40px rgba(255,105,180,.20);
@@ -439,31 +438,39 @@ margin:auto;
         transform:translateY(-6px);
     }
 }
+.story-intro{
 
-/* STORY TEXT FIX */
+max-width:650px;
 
-.story h2{
-    color:#ffffff;
+margin:20px auto 60px;
+
+line-height:2;
+
+}
+   
+.story-grid{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+
+gap:25px;
+
 }
 
-.story > p{
-    color:#f4dce7;
-}
 
 .story-card h3{
-    color:#ff5c9a;
+
+font-family:'Cormorant Garamond',serif;
+
+font-size:30px;
+
+color:#d64d79;
+
+margin-bottom:15px;
+
 }
 
-.story-card p{
-    color:#ffe7ef;
-    opacity:1;
-    font-weight:500;
-    line-height:1.8;
-}
-
-.story-card{
-    background:rgba(255,255,255,.12);
-}
 /* ==========================================
    TIMELINE
 ========================================== */
@@ -1026,17 +1033,6 @@ font-size:44px;
 
 }
 
-}
-/* STORY */
-
-.story{
-
-padding:120px 25px;
-
-text-align:center;
-
-}
-
 .section-tag{
 
 display:inline-block;
@@ -1057,67 +1053,8 @@ margin-bottom:20px;
 
 }
 
-.story-intro{
 
-max-width:650px;
 
-margin:20px auto 60px;
-
-line-height:2;
-
-}
-
-.story-grid{
-
-display:grid;
-
-grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-
-gap:25px;
-
-}
-
-.story-card{
-
-background:white;
-
-padding:35px;
-
-border-radius:24px;
-
-box-shadow:0 12px 35px rgba(0,0,0,.07);
-
-transition:.35s;
-
-}
-
-.story-card:hover{
-
-transform:translateY(-10px);
-
-box-shadow:0 20px 45px rgba(231,84,128,.18);
-
-}
-
-.story-icon{
-
-font-size:42px;
-
-margin-bottom:20px;
-
-}
-
-.story-card h3{
-
-font-family:'Cormorant Garamond',serif;
-
-font-size:30px;
-
-color:#d64d79;
-
-margin-bottom:15px;
-
-}
 /* ===============================
    Envelope Popup
 ================================*/
@@ -1417,8 +1354,8 @@ opacity:0;
     margin:80px auto;
     padding:60px 35px;
 
-    background:rgba(255,255,255,.78);
-    border:1px solid rgba(255,255,255,.9);
+   background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.08);
     border-radius:28px;
 
     box-shadow:
