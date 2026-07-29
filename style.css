@@ -424,7 +424,7 @@ margin-bottom:25px;
 .story p{
 
 max-width:650px;
- color:#f4dce7;
+ color:#f7dce8;
 margin:auto;
 
 }
@@ -438,6 +438,30 @@ margin:auto;
     }
 }
 
+/* STORY TEXT FIX */
+
+.story h2{
+    color:#ffffff;
+}
+
+.story > p{
+    color:#f4dce7;
+}
+
+.story-card h3{
+    color:#ff5c9a;
+}
+
+.story-card p{
+    color:#ffe7ef;
+    opacity:1;
+    font-weight:500;
+    line-height:1.8;
+}
+
+.story-card{
+    background:rgba(255,255,255,.12);
+}
 /* ==========================================
    TIMELINE
 ========================================== */
