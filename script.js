@@ -1,8 +1,143 @@
-/* ===========================
-   Dear Lavanya Das
-   Script.js
-=========================== */
-// Falling Petals
+/* ==========================================
+   DEAR LAVANYA DAS
+   SCRIPT.JS V2
+   PART 1
+========================================== */
+
+"use strict";
+
+/* ==========================================
+   ELEMENTS
+========================================== */
+
+const petalsContainer = document.querySelector(".petals");
+const lightsContainer = document.querySelector(".lights");
+
+/* ==========================================
+   LOADER
+========================================== */
+
+window.addEventListener("load", () => {
+
+    const loader = document.getElementById("loader");
+
+    if (!loader) return;
+
+    setTimeout(() => {
+
+        loader.classList.add("loader-hide");
+
+    }, 3000);
+
+});
+
+/* ==========================================
+   FLOATING LIGHTS
+========================================== */
+
+function createLight() {
+
+    if (!lightsContainer) return;
+
+    const light = document.createElement("div");
+
+    light.className = "light";
+
+    const size = Math.random() * 5 + 3;
+
+    light.style.width = `${size}px`;
+    light.style.height = `${size}px`;
+
+    light.style.left = `${Math.random() * 100}vw`;
+
+    light.style.animationDuration =
+        `${8 + Math.random() * 6}s`;
+
+    lightsContainer.appendChild(light);
+
+    setTimeout(() => {
+
+        light.remove();
+
+    }, 15000);
+
+}
+
+/* ==========================================
+   FALLING PETALS
+========================================== */
+
+function createPetal() {
+
+    if (!petalsContainer) return;
+
+    const petal = document.createElement("div");
+
+    petal.className = "petal";
+
+    petal.style.left =
+        `${Math.random() * 100}vw`;
+
+    petal.style.animationDuration =
+        `${8 + Math.random() * 5}s`;
+
+    petalsContainer.appendChild(petal);
+
+    setTimeout(() => {
+
+        petal.remove();
+
+    }, 13000);
+
+}
+
+/* ==========================================
+   START PARTICLES
+========================================== */
+
+setInterval(createLight, 600);
+
+setInterval(createPetal, 500);
+
+/* ==========================================
+   PART 2
+   HERO + ENVELOPE + TYPEWRITER
+========================================== */
+
+/* ==========================================
+   ELEMENTS
+========================================== */
+
+const openBtn = document.getElementById("openBtn");
+const overlay = document.getElementById("overlay");
+const envelope = document.querySelector(".envelope");
+
+const popupLetter = document.getElementById("popupLetter");
+const continueBtn = document.getElementById("continueBtn");
+
+const bgMusic = document.getElementById("bgMusic");
+const finalMusic = document.getElementById("finalMusic");
+
+/* ==========================================
+   MUSIC
+========================================== */
+
+if(bgMusic){
+
+    bgMusic.volume = 0.35;
+
+}
+
+if(finalMusic){
+
+    finalMusic.volume = 0.45;
+
+}
+
+/* ==========================================
+   POPUP MESSAGE
+========================================== */
+
 const popupMessage = `Before you continue...
 
 Thank you for opening this little corner of my heart.
@@ -11,115 +146,51 @@ I hope this little surprise brings a smile to your face.
 
 ❤️`;
 
-const petals = document.querySelector(".petals");
+/* ==========================================
+   TYPEWRITER
+========================================== */
 
-// ===============================
-// Floating Light Particles
-// ===============================
+function typeWriter(element,text,speed=70){
 
-const lights = document.querySelector(".lights");
+    if(!element) return;
 
-function createLight(){
+    element.innerHTML="";
 
-    if(!lights) return;
+    let index=0;
 
-    const light = document.createElement("div");
+    const timer=setInterval(()=>{
 
-    light.classList.add("light");
+        if(index>=text.length){
 
-    const size = Math.random() * 5 + 3;
+            clearInterval(timer);
 
-    light.style.width = size + "px";
-    light.style.height = size + "px";
-
-    light.style.left = Math.random() * 100 + "vw";
-
-    light.style.animationDuration =
-        (8 + Math.random() * 6) + "s";
-
-    lights.appendChild(light);
-
-    setTimeout(() => {
-        light.remove();
-    }, 15000);
-
-}
-
-setInterval(createLight, 600);
-
-function typePopupLetter(){
-
-    const letter = document.getElementById("popupLetter");
-const btn = document.getElementById("continueBtn");
-
-btn.style.opacity = "0";
-btn.style.transform = "translateY(15px)";
-    letter.innerHTML = "";
-
-    let i = 0;
-
-    const typing = setInterval(()=>{
-
-        if(i < popupMessage.length){
-
-            if(popupMessage.charAt(i) === "\n"){
-
-                letter.innerHTML += "<br>";
-
-            }else{
-
-                letter.innerHTML += popupMessage.charAt(i);
-
-            }
-
-            i++;
-
-        }else{
-
-            clearInterval(typing);
-           letter.innerHTML = popupMessage.replace(/\n/g,"<br>");
-           btn.style.opacity = "1";
-btn.style.transform = "translateY(0)";
+            return;
 
         }
 
-    },80);
+        if(text[index]==="\n"){
+
+            element.innerHTML+="<br>";
+
+        }else{
+
+            element.innerHTML+=text[index];
+
+        }
+
+        index++;
+
+    },speed);
 
 }
 
-function createPetal(){
+/* ==========================================
+   OPEN ENVELOPE
+========================================== */
 
-    const petal=document.createElement("div");
+function openEnvelope(){
 
-    petal.classList.add("petal");
-
-    petal.style.left=Math.random()*100+"vw";
-
-    petal.style.animationDuration=(8+Math.random()*5)+"s";
-
-    petals.appendChild(petal);
-
-    setTimeout(()=>{
-        petal.remove();
-    },13000);
-
-}
-
-setInterval(createPetal,500);
-
-// Envelope
-
-const openBtn = document.getElementById("openBtn");
-const overlay = document.getElementById("overlay");
-const envelope = document.querySelector(".envelope");
-const continueBtn = document.getElementById("continueBtn");
-const bgMusic = document.getElementById("bgMusic");
-const finalMusic = document.getElementById("finalMusic");
-
-bgMusic.volume = 0.35;
-finalMusic.volume = 0.45;
-
-openBtn.addEventListener("click",()=>{
+    if(!overlay || !envelope) return;
 
     overlay.classList.add("active");
 
@@ -127,198 +198,172 @@ openBtn.addEventListener("click",()=>{
 
         envelope.classList.add("open");
 
-        typePopupLetter();
+        typeWriter(popupLetter,popupMessage,55);
 
-    },800);
+        if(continueBtn){
 
-});
+            continueBtn.style.opacity="1";
 
-continueBtn.addEventListener("click",()=>{
+            continueBtn.style.transform="translateY(0)";
 
-    overlay.classList.remove("active");
-   bgMusic.play().catch(()=>{});
+        }
 
-    envelope.classList.remove("open");
-
-    document.querySelector(".story").scrollIntoView({
-        behavior:"smooth"
-    });
-
-});
-
-
-// Scroll Reveal
-
-const sections=document.querySelectorAll(".story,.timeline,.gallery,.special,.letter,.music,.ending");
-
-const observer=new IntersectionObserver(entries=>{
-
-entries.forEach(entry=>{
-
-if(entry.isIntersecting){
-
-entry.target.style.opacity="1";
-
-entry.target.style.transform="translateY(0)";
+    },600);
 
 }
 
+/* ==========================================
+   HERO BUTTON
+========================================== */
+
+if(openBtn){
+
+    openBtn.addEventListener("click",openEnvelope);
+
+}
+
+/* ==========================================
+   CONTINUE BUTTON
+========================================== */
+
+if(continueBtn){
+
+    continueBtn.addEventListener("click",()=>{
+
+        overlay.classList.remove("active");
+
+        envelope.classList.remove("open");
+
+        if(bgMusic){
+
+            bgMusic.play().catch(()=>{});
+
+        }
+
+        const story=document.querySelector(".story");
+
+        if(story){
+
+            story.scrollIntoView({
+
+                behavior:"smooth"
+
+            });
+
+        }
+
+    });
+
+}
+/* ==========================================
+   PART 3
+   SCROLL REVEAL + GALLERY + LETTER
+========================================== */
+
+/* ==========================================
+   SCROLL REVEAL
+========================================== */
+
+const revealSections = document.querySelectorAll(
+    ".story, .timeline, .gallery, .special, .letter, .music, .memory, .ending"
+);
+
+const revealObserver = new IntersectionObserver((entries) => {
+
+    entries.forEach((entry) => {
+
+        if (!entry.isIntersecting) return;
+
+        entry.target.classList.add("show");
+
+    });
+
+}, {
+    threshold: 0.15
 });
 
-});
+revealSections.forEach((section) => {
 
-sections.forEach(section=>{
+    section.classList.add("hidden-section");
 
-section.style.opacity="0";
-
-section.style.transform="translateY(60px)";
-
-section.style.transition="1s";
-
-observer.observe(section);
+    revealObserver.observe(section);
 
 });
-const popup = document.getElementById("imagePopup");
+
+/* ==========================================
+   IMAGE POPUP
+========================================== */
+
+const imagePopup = document.getElementById("imagePopup");
 const popupImg = document.getElementById("popupImg");
 const closeImage = document.getElementById("closeImage");
 
-document.querySelectorAll(".photo img").forEach(img=>{
+document.querySelectorAll(".photo img").forEach((img) => {
 
-    img.addEventListener("click",()=>{
+    img.addEventListener("click", () => {
 
-        popup.style.display="flex";
-        popupImg.src=img.src;
+        if (!imagePopup || !popupImg) return;
+
+        popupImg.src = img.src;
+        popupImg.alt = img.alt || "";
+
+        imagePopup.classList.add("active");
+
+        document.body.style.overflow = "hidden";
 
     });
 
 });
 
-closeImage.addEventListener("click",()=>{
+function closeGalleryPopup() {
 
-    popup.style.display="none";
+    if (!imagePopup) return;
 
-});
+    imagePopup.classList.remove("active");
 
-popup.addEventListener("click",(e)=>{
+    document.body.style.overflow = "";
 
-    if(e.target===popup){
+}
 
-        popup.style.display="none";
+if (closeImage) {
+
+    closeImage.addEventListener("click", closeGalleryPopup);
+
+}
+
+if (imagePopup) {
+
+    imagePopup.addEventListener("click", (e) => {
+
+        if (e.target === imagePopup) {
+
+            closeGalleryPopup();
+
+        }
+
+    });
+
+}
+
+document.addEventListener("keydown", (e) => {
+
+    if (e.key === "Escape") {
+
+        closeGalleryPopup();
 
     }
 
 });
-// ===============================
-// Final Surprise
-// ===============================
 
-const lastBtn = document.getElementById("lastBtn");
-const finalPopup = document.getElementById("finalPopup");
-const finalText = document.getElementById("finalText");
-const closeFinal = document.getElementById("closeFinal");
+/* ==========================================
+   READ MORE LETTER
+========================================== */
 
-const finalMessage = `Dear Lavanya Das ❤️
-
-Thank you for being one of the most beautiful chapters of my life.
-
-No matter what happens in the future,
-I'll always smile whenever I remember these moments.
-
-You are truly special.
-
-Keep smiling... Always. 🌸`;
-
-function typeFinalMessage(){
-
-    finalText.innerHTML = "";
-
-    let i = 0;
-
-    const typing = setInterval(()=>{
-
-        if(i < finalMessage.length){
-
-            if(finalMessage.charAt(i) === "\n"){
-                finalText.innerHTML += "<br>";
-            }else{
-                finalText.innerHTML += finalMessage.charAt(i);
-            }
-
-            i++;
-
-        }else{
-
-            clearInterval(typing);
-
-        }
-
-    },40);
-
-}
-
-if(lastBtn && finalPopup && finalText && closeFinal){
-
-    lastBtn.addEventListener("click",()=>{
-
-        finalPopup.style.display = "flex";
-
-        typeFinalMessage();
-
-    });
-
-    closeFinal.addEventListener("click",()=>{
-
-        finalPopup.style.display = "none";
-
-    });
-
-}
-function createHeart(){
-
-    const heart = document.createElement("div");
-
-    heart.className = "floating-heart";
-
-    heart.innerHTML = "💖";
-
-    heart.style.left = Math.random()*100 + "vw";
-
-    heart.style.fontSize = (20 + Math.random()*25) + "px";
-
-    document.getElementById("heartContainer").appendChild(heart);
-
-    setTimeout(()=>{
-        heart.remove();
-    },4000);
-
-}
-
-lastBtn.addEventListener("click",()=>{
-
-    let count = 0;
-
-    const burst = setInterval(()=>{
-
-        createHeart();
-
-        count++;
-
-        if(count >= 25){
-            clearInterval(burst);
-        }
-
-    },120);
-
-});
-// ===============================
-// Read More Letter
-// ===============================
-
-const readMore = document.getElementById("readMore");
+const readMoreBtn = document.getElementById("readMore");
 const hiddenLetter = document.getElementById("hiddenLetter");
 const hiddenText = document.getElementById("hiddenText");
 
-const fullLetter = `Dear Lavanya Das❤️
+const fullLetter = `Dear Lavanya Das ❤️
 
 Some people become memories.
 
@@ -338,46 +383,279 @@ Keep smiling.
 
 With Love,
 
-Saz❤️`;
+Saz ❤️`;
 
-readMore.addEventListener("click",()=>{
+function typeHiddenLetter() {
 
-    hiddenLetter.classList.add("open");
+    if (!hiddenText) return;
 
-    hiddenText.innerHTML="";
+    hiddenText.innerHTML = "";
 
-    let i=0;
+    let i = 0;
 
-    const typing=setInterval(()=>{
+    const timer = setInterval(() => {
 
-        if(i<fullLetter.length){
+        if (i >= fullLetter.length) {
 
-            if(fullLetter.charAt(i)==="\n"){
+            clearInterval(timer);
 
-                hiddenText.innerHTML+="<br>";
+            if (readMoreBtn) {
 
-            }else{
-
-                hiddenText.innerHTML+=fullLetter.charAt(i);
+                readMoreBtn.style.display = "none";
 
             }
 
-            i++;
-
-        }else{
-
-            clearInterval(typing);
-
-            readMore.style.display="none";
+            return;
 
         }
 
+        if (fullLetter[i] === "\n") {
+
+            hiddenText.innerHTML += "<br>";
+
+        } else {
+
+            hiddenText.innerHTML += fullLetter[i];
+
+        }
+
+        i++;
+
+    }, 40);
+
+}
+
+if (readMoreBtn) {
+
+    readMoreBtn.addEventListener("click", () => {
+
+        if (hiddenLetter) {
+
+            hiddenLetter.classList.add("open");
+
+        }
+
+        typeHiddenLetter();
+
+    });
+
+}
+/* ==========================================
+   PART 4
+   FINAL SURPRISE + MUSIC
+========================================== */
+
+/* ==========================================
+   ELEMENTS
+========================================== */
+
+const lastBtn = document.getElementById("lastBtn");
+const finalPopup = document.getElementById("finalPopup");
+const finalText = document.getElementById("finalText");
+const closeFinal = document.getElementById("closeFinal");
+const heartContainer = document.getElementById("heartContainer");
+
+/* ==========================================
+   FINAL MESSAGE
+========================================== */
+
+const finalMessage = `Dear Lavanya Das ❤️
+
+Thank you for being one of the most beautiful chapters of my life.
+
+No matter what happens in the future,
+
+I'll always smile whenever I remember these moments.
+
+You are truly special.
+
+Keep smiling...
+
+Always. 🌸`;
+
+/* ==========================================
+   TYPEWRITER
+========================================== */
+
+function typeFinalMessage(){
+
+    if(!finalText) return;
+
+    finalText.innerHTML="";
+
+    let i=0;
+
+    const timer=setInterval(()=>{
+
+        if(i>=finalMessage.length){
+
+            clearInterval(timer);
+            return;
+
+        }
+
+        if(finalMessage[i]==="\n"){
+
+            finalText.innerHTML+="<br>";
+
+        }else{
+
+            finalText.innerHTML+=finalMessage[i];
+
+        }
+
+        i++;
+
     },40);
 
+}
+
+/* ==========================================
+   FLOATING HEART
+========================================== */
+
+function createFloatingHeart(){
+
+    if(!heartContainer) return;
+
+    const heart=document.createElement("div");
+
+    heart.className="floating-heart";
+
+    heart.innerHTML="💖";
+
+    heart.style.left=Math.random()*100+"vw";
+
+    heart.style.fontSize=
+        (20+Math.random()*25)+"px";
+
+    heart.style.animationDuration=
+        (3+Math.random()*2)+"s";
+
+    heartContainer.appendChild(heart);
+
+    setTimeout(()=>{
+
+        heart.remove();
+
+    },5000);
+
+}
+
+/* ==========================================
+   HEART BURST
+========================================== */
+
+function startHeartBurst(){
+
+    let count=0;
+
+    const burst=setInterval(()=>{
+
+        createFloatingHeart();
+
+        count++;
+
+        if(count>=30){
+
+            clearInterval(burst);
+
+        }
+
+    },120);
+
+}
+
+/* ==========================================
+   OPEN FINAL POPUP
+========================================== */
+
+function openFinalPopup(){
+
+    if(!finalPopup) return;
+
+    if(bgMusic){
+
+        bgMusic.pause();
+        bgMusic.currentTime=0;
+
+    }
+
+    if(finalMusic){
+
+        finalMusic.currentTime=0;
+
+        finalMusic.play().catch(()=>{});
+
+    }
+
+    finalPopup.classList.add("active");
+
+    typeFinalMessage();
+
+    startHeartBurst();
+
+}
+
+/* ==========================================
+   CLOSE FINAL POPUP
+========================================== */
+
+function closeFinalPopup(){
+
+    if(!finalPopup) return;
+
+    finalPopup.classList.remove("active");
+
+}
+
+/* ==========================================
+   EVENTS
+========================================== */
+
+if(lastBtn){
+
+    lastBtn.addEventListener("click",openFinalPopup);
+
+}
+
+if(closeFinal){
+
+    closeFinal.addEventListener("click",closeFinalPopup);
+
+}
+
+if(finalPopup){
+
+    finalPopup.addEventListener("click",(e)=>{
+
+        if(e.target===finalPopup){
+
+            closeFinalPopup();
+
+        }
+
+    });
+
+}
+
+document.addEventListener("keydown",(e)=>{
+
+    if(e.key==="Escape"){
+
+        closeFinalPopup();
+
+    }
+
 });
-// ===============================
-// MEMORY JAR
-// ===============================
+/* ==========================================
+   PART 5
+   MEMORY JAR + ROSE RAIN + INIT
+========================================== */
+
+/* ==========================================
+   MEMORY JAR
+========================================== */
 
 const jarHearts = document.getElementById("jarHearts");
 const memoryCount = document.getElementById("memoryCount");
@@ -386,147 +664,189 @@ const openJar = document.getElementById("openJar");
 let memories = 0;
 const maxMemories = 5;
 
-// Add Heart Function
-function addMemoryHeart(){
+function updateMemoryCounter(){
+
+    if(memoryCount){
+
+        memoryCount.textContent = memories;
+
+    }
+
+}
+
+function addMemory(){
 
     if(memories >= maxMemories) return;
 
     memories++;
 
-    memoryCount.innerText = memories;
+    updateMemoryCounter();
 
-    const heart = document.createElement("div");
-    heart.className = "jar-heart";
-    heart.innerHTML = "❤️";
+    if(jarHearts){
 
-    jarHearts.appendChild(heart);
+        const heart = document.createElement("div");
 
-    if(memories === maxMemories){
+        heart.className = "jar-heart";
 
-        openJar.style.boxShadow =
-        "0 0 25px rgba(255,105,180,.8)";
+        heart.innerHTML = "❤️";
 
-        openJar.style.transform = "scale(1.05)";
+        jarHearts.appendChild(heart);
+
+    }
+
+    if(memories === maxMemories && openJar){
+
+        openJar.classList.add("ready");
+
     }
 
 }
 
-// Demo (Automatically fills every 2 seconds)
-// Baad me isko Story, Gallery, Letter se connect karenge.
-setInterval(()=>{
+/* ==========================================
+   DEMO
+========================================== */
 
-    addMemoryHeart();
+const memoryTimer = setInterval(()=>{
+
+    addMemory();
+
+    if(memories >= maxMemories){
+
+        clearInterval(memoryTimer);
+
+    }
 
 },2000);
 
-// ===============================
-// CINEMATIC ROSE PETAL RAIN + OPEN MEMORY JAR
-// ===============================
+/* ==========================================
+   ROSE PETAL RAIN
+========================================== */
 
-const petalImages = [
-    "assets/images/petal1.png",
-    "assets/images/petal2.png",
-    "assets/images/petal3.png",
-    "assets/images/petal4.png"
+const petalImages=[
+
+"assets/images/petal1.png",
+"assets/images/petal2.png",
+"assets/images/petal3.png",
+"assets/images/petal4.png"
+
 ];
 
 function roseRain(){
 
-    for(let i=0;i<220;i++){
+    for(let i=0;i<180;i++){
 
         const petal=document.createElement("img");
 
-        petal.src = petalImages[Math.floor(Math.random()*petalImages.length)];
+        petal.src=
+        petalImages[
+            Math.floor(Math.random()*petalImages.length)
+        ];
 
-        const size=12+Math.random()*35;
-        const drift=(Math.random()-0.5)*900;
-        const duration=7000+Math.random()*5000;
-        const rotate=Math.random()*1440-720;
-        const delay=Math.random()*4000;
+        petal.className="rose-petal";
 
-        petal.style.position="fixed";
         petal.style.left=Math.random()*100+"vw";
-        petal.style.top="-80px";
-        petal.style.width=size+"px";
-        petal.style.pointerEvents="none";
-        petal.style.zIndex="99999";
-        petal.style.opacity="0";
+
+        petal.style.width=
+            (12+Math.random()*30)+"px";
+
+        petal.style.animationDuration=
+            (6+Math.random()*4)+"s";
+
+        petal.style.animationDelay=
+            Math.random()*2+"s";
+
+        petal.style.transform=
+            `rotate(${Math.random()*360}deg)`;
 
         document.body.appendChild(petal);
 
-        setTimeout(()=>{
+        petal.addEventListener("animationend",()=>{
 
-            petal.style.opacity="1";
-
-            petal.animate([
-                {
-                    transform:"translate(0,0) rotate(0deg)",
-                    opacity:1
-                },
-                {
-                    transform:`translate(${drift}px,120vh) rotate(${rotate}deg)`,
-                    opacity:0
-                }
-            ],{
-                duration:duration,
-                easing:"ease-in-out",
-                fill:"forwards"
-            });
-
-        },delay);
-
-        setTimeout(()=>{
             petal.remove();
-        },duration+delay);
+
+        });
 
     }
 
 }
 
-// ===============================
-// OPEN MEMORY JAR
-// ===============================
+/* ==========================================
+   MEMORY JAR OPEN
+========================================== */
 
-openJar.addEventListener("click",()=>{
-   console.log(memories);
+if(openJar){
 
-    if(memories < maxMemories){
+    openJar.addEventListener("click",()=>{
 
-        alert("Collect all memories first ❤️");
-        return;
+        if(memories < maxMemories){
 
-    }
+            alert("Collect all memories first ❤️");
 
-    // 🌹 3 Waves of Rose Petals
-   bgMusic.pause();
-bgMusic.currentTime = 0;
-finalMusic.play().catch(()=>{});
-    roseRain();
+            return;
 
-    setTimeout(()=>{
+        }
+
+        if(bgMusic){
+
+            bgMusic.pause();
+
+        }
+
+        if(finalMusic){
+
+            finalMusic.currentTime = 0;
+
+            finalMusic.play().catch(()=>{});
+
+        }
+
         roseRain();
-    },2500);
 
-    setTimeout(()=>{
-        roseRain();
-    },5000);
+        setTimeout(roseRain,2000);
 
-    setTimeout(()=>{
+        setTimeout(roseRain,4000);
 
-        alert("🌸 Some memories never fade...\n\nThey bloom forever.\n\n❤️ Thank You, Lavanya Das❤️");
+        setTimeout(()=>{
 
-    },3500);
+            alert(`🌸
 
-});
+Some memories never fade...
 
-// ================= LOADER =================
+They bloom forever.
 
-window.addEventListener("load",()=>{
+❤️ Thank You Lavanya Das ❤️`);
 
-setTimeout(()=>{
+        },3500);
 
-document.getElementById("loader").classList.add("loader-hide");
+    });
 
-},3000);
+}
 
-});
+/* ==========================================
+   INITIALIZE WEBSITE
+========================================== */
+
+function initWebsite(){
+
+    updateMemoryCounter();
+
+    console.log(
+        "%cDear Lavanya Das ❤️",
+        "color:#ff5fa2;font-size:20px;font-weight:bold;"
+    );
+
+    console.log(
+        "%cWebsite Loaded Successfully",
+        "color:#9cffb2;font-size:15px;"
+    );
+
+}
+
+document.addEventListener(
+    "DOMContentLoaded",
+    initWebsite
+);
+
+/* ==========================================
+   END OF SCRIPT
+========================================== */
