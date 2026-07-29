@@ -116,6 +116,7 @@ padding:30px;
 width:100%;
 
 position: relative;
+border-radius: 40px;   
 overflow: hidden;
    
 max-width:620px;
