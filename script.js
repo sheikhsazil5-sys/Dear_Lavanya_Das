@@ -1,932 +1,907 @@
-/* ==========================================
-   DEAR LAVANYA DAS
-   SCRIPT.JS V2
-   PART 1
-========================================== */
+/*=========================================
+Dear Lavanya Das ❤️
+Premium Edition V2
+=========================================*/
 
-"use strict";
+/*=========================================
+ELEMENTS
+=========================================*/
 
-/* ==========================================
-   ELEMENTS
-========================================== */
+const loader = document.getElementById("loader");
 
-const petalsContainer = document.querySelector(".petals");
-const lightsContainer = document.querySelector(".lights");
+const lights = document.querySelector(".lights");
 
-/* ==========================================
-   LOADER
-========================================== */
+const petals = document.querySelector(".petals");
 
-window.addEventListener("load", () => {
+const sparkles = document.querySelector(".sparkles");
 
-    const loader = document.getElementById("loader");
+const mouseGlow = document.querySelector(".mouse-glow");
 
-    if (!loader) return;
+/*=========================================
+LOADER
+=========================================*/
 
-    setTimeout(() => {
+window.addEventListener("load",()=>{
 
-        loader.classList.add("loader-hide");
+    setTimeout(()=>{
 
-    }, 3000);
+        loader.style.opacity="0";
+
+        loader.style.visibility="hidden";
+
+    },1800);
 
 });
 
-/* ==========================================
-   FLOATING LIGHTS
-========================================== */
+/*=========================================
+FLOATING LIGHTS
+=========================================*/
 
-function createLight() {
+function createLight(){
 
-    if (!lightsContainer) return;
+    const light=document.createElement("div");
 
-    const light = document.createElement("div");
+    light.className="light";
 
-    light.className = "light";
+    light.style.left=Math.random()*100+"vw";
 
-    const size = Math.random() * 5 + 3;
+    light.style.animationDuration=
+    (6+Math.random()*6)+"s";
 
-    light.style.width = size + "px";
-    light.style.height = size + "px";
+    light.style.opacity=Math.random();
 
-    light.style.left = Math.random() * 100 + "vw";
+    light.style.transform=
+    `scale(${0.5+Math.random()*1.5})`;
 
-    light.style.animationDuration =
-        (8 + Math.random() * 6) + "s";
+    lights.appendChild(light);
 
-    lightsContainer.appendChild(light);
-
-    setTimeout(() => {
+    setTimeout(()=>{
 
         light.remove();
 
-    }, 15000);
+    },12000);
 
 }
 
-/* ==========================================
-   IMAGE ROSE PETALS
-========================================== */
+setInterval(createLight,350);
 
-const petalImages = [
+/*=========================================
+SPARKLES
+=========================================*/
 
-    "assets/images/petal1.png",
-    "assets/images/petal2.png",
-    "assets/images/petal3.png",
-    "assets/images/petal4.png"
+function createSpark(){
+
+    const spark=document.createElement("div");
+
+    spark.className="spark";
+
+    spark.style.left=Math.random()*100+"vw";
+
+    spark.style.top=Math.random()*100+"vh";
+
+    spark.style.animationDuration=
+    (2+Math.random()*4)+"s";
+
+    sparkles.appendChild(spark);
+
+    setTimeout(()=>{
+
+        spark.remove();
+
+    },6000);
+
+}
+
+setInterval(createSpark,180);
+
+/*=========================================
+MOUSE GLOW
+=========================================*/
+
+window.addEventListener("mousemove",(e)=>{
+
+    mouseGlow.style.left=e.clientX+"px";
+
+    mouseGlow.style.top=e.clientY+"px";
+
+});
+
+/*=========================================
+ROSE PETALS
+=========================================*/
+
+const petalImages=[
+
+"assets/images/petal1.png",
+
+"assets/images/petal2.png",
+
+"assets/images/petal3.png",
+
+"assets/images/petal4.png"
 
 ];
 
-function createPetal() {
+function createPetal(){
 
-    if (!petalsContainer) return;
+    const petal=document.createElement("img");
 
-    const petal = document.createElement("img");
+    petal.src=
 
-    petal.src =
-        petalImages[
-            Math.floor(Math.random() * petalImages.length)
-        ];
+    petalImages[
+    Math.floor(Math.random()*petalImages.length)
+    ];
 
-    petal.className = "petal";
+    petal.className="petal";
 
-    const size = 18 + Math.random() * 20;
+    petal.style.left=Math.random()*100+"vw";
 
-    petal.style.width = size + "px";
+    petal.style.width=
 
-    petal.style.left = Math.random() * 100 + "vw";
+    (18+Math.random()*32)+"px";
 
-    petal.style.top = "-60px";
+    petal.style.opacity=
 
-    petal.style.position = "fixed";
+    .5+Math.random()*.5;
 
-    petal.style.pointerEvents = "none";
+    petal.style.transform=
 
-    petal.style.userSelect = "none";
+    `rotate(${Math.random()*360}deg)`;
 
-    petal.style.zIndex = "-1";
+    const duration=10+Math.random()*10;
 
-    petal.style.opacity = "0.95";
-
-    const drift = (Math.random() - 0.5) * 250;
-
-    const rotate = Math.random() * 720 - 360;
-
-    const duration = 9000 + Math.random() * 5000;
-
-    petalsContainer.appendChild(petal);
+    const drift=(Math.random()-0.5)*400;
 
     petal.animate(
 
-        [
+    [
 
-            {
+    {
 
-                transform: "translate(0,0) rotate(0deg)",
+    transform:
 
-                opacity: 1
+    `translate(0,-100px)
+     rotate(0deg)`,
 
-            },
+    opacity:0
 
-            {
+    },
 
-                transform:
-                    `translate(${drift}px,120vh) rotate(${rotate}deg)`,
+    {
 
-                opacity: 0
+    opacity:1,
 
-            }
+    offset:.15
 
-        ],
+    },
 
-        {
+    {
 
-            duration: duration,
+    transform:
 
-            easing: "linear",
+    `translate(${drift}px,
+    ${window.innerHeight+200}px)
+    rotate(${720+Math.random()*720}deg)`,
 
-            fill: "forwards"
+    opacity:0
 
-        }
+    }
+
+    ],
+
+    {
+
+    duration:duration*1000,
+
+    easing:"linear"
+
+    }
 
     );
 
-    setTimeout(() => {
+    petals.appendChild(petal);
+
+    setTimeout(()=>{
 
         petal.remove();
 
-    }, duration);
+    },duration*1000);
 
 }
 
-/* ==========================================
-   START PARTICLES
-========================================== */
+setInterval(createPetal,220);
+/*=========================================
+OPEN MY HEART
+=========================================*/
 
-setInterval(createLight, 600);
+const openBtn=document.getElementById("openBtn");
 
-setInterval(createPetal, 450);
-/* ==========================================
-   PART 2
-   HERO + ENVELOPE + TYPEWRITER
-========================================== */
+const overlay=document.getElementById("overlay");
 
-/* ==========================================
-   ELEMENTS
-========================================== */
+const envelope=document.getElementById("envelopePopup");
 
-const openBtn = document.getElementById("openBtn");
-const overlay = document.getElementById("overlay");
-const envelope = document.querySelector(".envelope");
+const popupMessage=document.getElementById("popupMessage");
 
-const popupLetter = document.getElementById("popupLetter");
-const continueBtn = document.getElementById("continueBtn");
+const continueBtn=document.getElementById("continueBtn");
 
-const bgMusic = document.getElementById("bgMusic");
-const finalMusic = document.getElementById("finalMusic");
+/*=========================================
+LETTER
+=========================================*/
 
-/* ==========================================
-   MUSIC
-========================================== */
+const letterText=`
 
-if(bgMusic){
-
-    bgMusic.volume = 0.35;
-
-}
-
-if(finalMusic){
-
-    finalMusic.volume = 0.45;
-
-}
-
-/* ==========================================
-   POPUP MESSAGE
-========================================== */
-
-const popupMessage = `Before you continue...
-
-Thank you for opening this little corner of my heart.
-
-I hope this little surprise brings a smile to your face.
-
-❤️`;
-
-/* ==========================================
-   TYPEWRITER
-========================================== */
-
-function typeWriter(element,text,speed=70){
-
-    if(!element) return;
-
-    element.innerHTML="";
-
-    let index=0;
-
-    const timer=setInterval(()=>{
-
-        if(index>=text.length){
-
-            clearInterval(timer);
-
-            return;
-
-        }
-
-        if(text[index]==="\n"){
-
-            element.innerHTML+="<br>";
-
-        }else{
-
-            element.innerHTML+=text[index];
-
-        }
-
-        index++;
-
-    },speed);
-
-}
-
-/* ==========================================
-   OPEN ENVELOPE
-========================================== */
-
-function openEnvelope(){
-
-    if(!overlay || !envelope) return;
-
-    overlay.classList.add("active");
-
-    setTimeout(()=>{
-
-        envelope.classList.add("open");
-
-        typeWriter(popupLetter,popupMessage,55);
-
-        if(continueBtn){
-
-            continueBtn.style.opacity="1";
-
-            continueBtn.style.transform="translateY(0)";
-
-        }
-
-    },600);
-
-}
-
-/* ==========================================
-   HERO BUTTON
-========================================== */
-
-if(openBtn){
-
-    openBtn.addEventListener("click",openEnvelope);
-
-}
-
-/* ==========================================
-   CONTINUE BUTTON
-========================================== */
-
-if(continueBtn){
-
-    continueBtn.addEventListener("click",()=>{
-
-        overlay.classList.remove("active");
-
-        envelope.classList.remove("open");
-
-        if(bgMusic){
-
-            bgMusic.play().catch(()=>{});
-
-        }
-
-        const story=document.querySelector(".story");
-
-        if(story){
-
-            story.scrollIntoView({
-
-                behavior:"smooth"
-
-            });
-
-        }
-
-    });
-
-}
-/* ==========================================
-   PART 3
-   SCROLL REVEAL + GALLERY + LETTER
-========================================== */
-
-/* ==========================================
-   SCROLL REVEAL
-========================================== */
-
-const revealSections = document.querySelectorAll(
-    ".story, .timeline, .gallery, .special, .letter, .music, .memory, .ending"
-);
-
-const revealObserver = new IntersectionObserver((entries) => {
-
-    entries.forEach((entry) => {
-
-        if (!entry.isIntersecting) return;
-
-        entry.target.classList.add("show");
-
-    });
-
-}, {
-    threshold: 0.15
-});
-
-revealSections.forEach((section) => {
-
-    section.classList.add("hidden-section");
-
-    revealObserver.observe(section);
-
-});
-
-/* ==========================================
-   IMAGE POPUP
-========================================== */
-
-const imagePopup = document.getElementById("imagePopup");
-const popupImg = document.getElementById("popupImg");
-const closeImage = document.getElementById("closeImage");
-
-document.querySelectorAll(".photo img").forEach((img) => {
-
-    img.addEventListener("click", () => {
-
-        if (!imagePopup || !popupImg) return;
-
-        popupImg.src = img.src;
-        popupImg.alt = img.alt || "";
-
-        imagePopup.classList.add("active");
-
-        document.body.style.overflow = "hidden";
-
-    });
-
-});
-
-function closeGalleryPopup() {
-
-    if (!imagePopup) return;
-
-    imagePopup.classList.remove("active");
-
-    document.body.style.overflow = "";
-
-}
-
-if (closeImage) {
-
-    closeImage.addEventListener("click", closeGalleryPopup);
-
-}
-
-if (imagePopup) {
-
-    imagePopup.addEventListener("click", (e) => {
-
-        if (e.target === imagePopup) {
-
-            closeGalleryPopup();
-
-        }
-
-    });
-
-}
-
-document.addEventListener("keydown", (e) => {
-
-    if (e.key === "Escape") {
-
-        closeGalleryPopup();
-
-    }
-
-});
-
-/* ==========================================
-   READ MORE LETTER
-========================================== */
-
-const readMoreBtn = document.getElementById("readMore");
-const hiddenLetter = document.getElementById("hiddenLetter");
-const hiddenText = document.getElementById("hiddenText");
-
-const fullLetter = `Dear Lavanya Das ❤️
+Dear Lavanya ❤️
 
 Some people become memories.
 
-But you became one of my favorite chapters.
+But you became a beautiful chapter
+of my life.
 
-Thank you for every smile,
-every conversation,
-and every beautiful moment.
+Every smile...
 
-I don't know what tomorrow holds,
+Every conversation...
 
-but today...
+Every little moment...
 
-I'm grateful that our paths crossed.
+became something unforgettable.
 
-Keep smiling.
+This website is just a small way
+to say...
 
-With Love,
+Thank You.
 
-Saz ❤️`;
+❤️
 
-function typeHiddenLetter() {
+`;
 
-    if (!hiddenText) return;
+let letterIndex=0;
 
-    hiddenText.innerHTML = "";
+function typeLetter(){
 
-    let i = 0;
+    popupMessage.innerHTML="";
 
-    const timer = setInterval(() => {
+    letterIndex=0;
 
-        if (i >= fullLetter.length) {
+    function typing(){
 
-            clearInterval(timer);
+        if(letterIndex<letterText.length){
 
-            if (readMoreBtn) {
+            popupMessage.innerHTML+=letterText.charAt(letterIndex);
 
-                readMoreBtn.style.display = "none";
+            letterIndex++;
 
-            }
-
-            return;
+            setTimeout(typing,35);
 
         }
-
-        if (fullLetter[i] === "\n") {
-
-            hiddenText.innerHTML += "<br>";
-
-        } else {
-
-            hiddenText.innerHTML += fullLetter[i];
-
-        }
-
-        i++;
-
-    }, 40);
-
-}
-
-if (readMoreBtn) {
-
-    readMoreBtn.addEventListener("click", () => {
-
-        if (hiddenLetter) {
-
-            hiddenLetter.classList.add("open");
-
-        }
-
-        typeHiddenLetter();
-
-    });
-
-}
-/* ==========================================
-   PART 4
-   FINAL SURPRISE + MUSIC
-========================================== */
-
-/* ==========================================
-   ELEMENTS
-========================================== */
-
-const lastBtn = document.getElementById("lastBtn");
-const finalPopup = document.getElementById("finalPopup");
-const finalText = document.getElementById("finalText");
-const closeFinal = document.getElementById("closeFinal");
-const heartContainer = document.getElementById("heartContainer");
-
-/* ==========================================
-   FINAL MESSAGE
-========================================== */
-
-const finalMessage = `Dear Lavanya Das ❤️
-
-Thank you for being one of the most beautiful chapters of my life.
-
-No matter what happens in the future,
-
-I'll always smile whenever I remember these moments.
-
-You are truly special.
-
-Keep smiling...
-
-Always. 🌸`;
-
-/* ==========================================
-   TYPEWRITER
-========================================== */
-
-function typeFinalMessage(){
-
-    if(!finalText) return;
-
-    finalText.innerHTML="";
-
-    let i=0;
-
-    const timer=setInterval(()=>{
-
-        if(i>=finalMessage.length){
-
-            clearInterval(timer);
-            return;
-
-        }
-
-        if(finalMessage[i]==="\n"){
-
-            finalText.innerHTML+="<br>";
-
-        }else{
-
-            finalText.innerHTML+=finalMessage[i];
-
-        }
-
-        i++;
-
-    },40);
-
-}
-
-/* ==========================================
-   FLOATING HEART
-========================================== */
-
-function createFloatingHeart(){
-
-    if(!heartContainer) return;
-
-    const heart=document.createElement("div");
-
-    heart.className="floating-heart";
-
-    heart.innerHTML="💖";
-
-    heart.style.left=Math.random()*100+"vw";
-
-    heart.style.fontSize=
-        (20+Math.random()*25)+"px";
-
-    heart.style.animationDuration=
-        (3+Math.random()*2)+"s";
-
-    heartContainer.appendChild(heart);
-
-    setTimeout(()=>{
-
-        heart.remove();
-
-    },5000);
-
-}
-
-/* ==========================================
-   HEART BURST
-========================================== */
-
-function startHeartBurst(){
-
-    let count=0;
-
-    const burst=setInterval(()=>{
-
-        createFloatingHeart();
-
-        count++;
-
-        if(count>=30){
-
-            clearInterval(burst);
-
-        }
-
-    },120);
-
-}
-
-/* ==========================================
-   OPEN FINAL POPUP
-========================================== */
-
-function openFinalPopup(){
-
-    if(!finalPopup) return;
-
-    if(bgMusic){
-
-        bgMusic.pause();
-        bgMusic.currentTime=0;
 
     }
 
-    if(finalMusic){
-
-        finalMusic.currentTime=0;
-
-        finalMusic.play().catch(()=>{});
-
-    }
-
-    finalPopup.classList.add("active");
-
-    typeFinalMessage();
-
-    startHeartBurst();
+    typing();
 
 }
 
-/* ==========================================
-   CLOSE FINAL POPUP
-========================================== */
+/*=========================================
+OPEN ENVELOPE
+=========================================*/
 
-function closeFinalPopup(){
+openBtn.addEventListener("click",()=>{
 
-    if(!finalPopup) return;
+    overlay.classList.add("show");
 
-    finalPopup.classList.remove("active");
+    envelope.classList.add("show");
 
-}
-
-/* ==========================================
-   EVENTS
-========================================== */
-
-if(lastBtn){
-
-    lastBtn.addEventListener("click",openFinalPopup);
-
-}
-
-if(closeFinal){
-
-    closeFinal.addEventListener("click",closeFinalPopup);
-
-}
-
-if(finalPopup){
-
-    finalPopup.addEventListener("click",(e)=>{
-
-        if(e.target===finalPopup){
-
-            closeFinalPopup();
-
-        }
-
-    });
-
-}
-
-document.addEventListener("keydown",(e)=>{
-
-    if(e.key==="Escape"){
-
-        closeFinalPopup();
-
-    }
+    typeLetter();
 
 });
-/* ==========================================
-   PART 5 V2
-   MEMORY JAR + CINEMATIC ROSE RAIN
-========================================== */
 
-const jarHearts = document.getElementById("jarHearts");
-const memoryCount = document.getElementById("memoryCount");
-const openJar = document.getElementById("openJar");
+/*=========================================
+CONTINUE
+=========================================*/
 
-let memories = 0;
-const maxMemories = 5;
+continueBtn.addEventListener("click",()=>{
 
-/* ==========================================
-   MEMORY COUNTER
-========================================== */
+    overlay.classList.remove("show");
 
-function updateMemoryCounter(){
+    envelope.classList.remove("show");
 
-    if(memoryCount){
+    document
+    .getElementById("story")
+    .scrollIntoView({
 
-        memoryCount.innerText = memories;
+        behavior:"smooth"
 
-    }
+    });
 
-}
+});
 
-function addMemory(){
+/*=========================================
+SCROLL REVEAL
+=========================================*/
 
-    if(memories >= maxMemories) return;
+const reveals=document.querySelectorAll(".reveal");
 
-    memories++;
+const observer=new IntersectionObserver((entries)=>{
 
-    updateMemoryCounter();
+entries.forEach(entry=>{
 
-    const heart = document.createElement("div");
+if(entry.isIntersecting){
 
-    heart.className = "jar-heart";
-
-    heart.innerHTML = "❤️";
-
-    jarHearts.appendChild(heart);
-
-    if(memories === maxMemories){
-
-        openJar.classList.add("ready");
-
-    }
+entry.target.classList.add("active");
 
 }
 
-const memoryTimer = setInterval(()=>{
+});
 
-    addMemory();
+},{
+threshold:.2
+});
 
-    if(memories >= maxMemories){
+reveals.forEach(section=>{
 
-        clearInterval(memoryTimer);
+observer.observe(section);
 
-    }
+});
 
-},2000);
+/*=========================================
+SMOOTH NAVIGATION
+=========================================*/
 
+document.querySelectorAll("nav a").forEach(link=>{
 
-/* ==========================================
-   ORIGINAL CINEMATIC ROSE RAIN
-========================================== */
+link.addEventListener("click",(e)=>{
 
-const petalImages = [
+e.preventDefault();
 
-    "assets/images/petal1.png",
-    "assets/images/petal2.png",
-    "assets/images/petal3.png",
-    "assets/images/petal4.png"
+const target=document.querySelector(
+
+link.getAttribute("href")
+
+);
+
+target.scrollIntoView({
+
+behavior:"smooth"
+
+});
+
+});
+
+});
+
+/*=========================================
+MUSIC
+=========================================*/
+
+const bgMusic=document.getElementById("bgMusic");
+
+const musicBtn=document.getElementById("musicBtn");
+
+let musicPlaying=false;
+
+musicBtn.addEventListener("click",()=>{
+
+if(!musicPlaying){
+
+bgMusic.volume=.5;
+
+bgMusic.play();
+
+musicBtn.innerHTML="⏸ Pause Music";
+
+musicPlaying=true;
+
+}
+
+else{
+
+bgMusic.pause();
+
+musicBtn.innerHTML="▶ Play Music";
+
+musicPlaying=false;
+
+}
+
+});
+/*=========================================
+GALLERY POPUP
+=========================================*/
+
+const galleryImages=document.querySelectorAll(".gallery-item img");
+
+const imagePopup=document.getElementById("imagePopup");
+
+const popupImage=document.getElementById("popupImage");
+
+const closeImage=document.getElementById("closeImage");
+
+galleryImages.forEach(img=>{
+
+img.addEventListener("click",()=>{
+
+popupImage.src=img.src;
+
+imagePopup.classList.add("show");
+
+});
+
+});
+
+closeImage.addEventListener("click",()=>{
+
+imagePopup.classList.remove("show");
+
+});
+
+imagePopup.addEventListener("click",(e)=>{
+
+if(e.target===imagePopup){
+
+imagePopup.classList.remove("show");
+
+}
+
+});
+
+/*=========================================
+LETTER POPUP
+=========================================*/
+
+const readMoreBtn=document.getElementById("readMoreBtn");
+
+const letterPopup=document.getElementById("letterPopup");
+
+const closeLetter=document.getElementById("closeLetter");
+
+readMoreBtn.addEventListener("click",()=>{
+
+letterPopup.classList.add("show");
+
+});
+
+closeLetter.addEventListener("click",()=>{
+
+letterPopup.classList.remove("show");
+
+});
+
+letterPopup.addEventListener("click",(e)=>{
+
+if(e.target===letterPopup){
+
+letterPopup.classList.remove("show");
+
+}
+
+});
+
+/*=========================================
+MEMORY JAR
+=========================================*/
+
+const memoryBtn=document.getElementById("memoryBtn");
+
+const memoryJar=document.getElementById("memoryJar");
+
+memoryBtn.addEventListener("click",()=>{
+
+memoryJar.animate([
+
+{
+
+transform:"scale(1)"
+
+},
+
+{
+
+transform:"scale(1.18) rotate(-8deg)"
+
+},
+
+{
+
+transform:"scale(1) rotate(8deg)"
+
+},
+
+{
+
+transform:"scale(1)"
+
+}
+
+],{
+
+duration:900,
+
+iterations:1
+
+});
+
+roseRain(80);
+
+setTimeout(()=>{
+
+roseRain(100);
+
+},900);
+
+setTimeout(()=>{
+
+roseRain(120);
+
+},1800);
+
+});
+
+/*=========================================
+ROSE RAIN
+=========================================*/
+
+function roseRain(count){
+
+for(let i=0;i<count;i++){
+
+setTimeout(()=>{
+
+const petal=document.createElement("img");
+
+petal.src=petalImages[
+
+Math.floor(Math.random()*petalImages.length)
 
 ];
 
-function roseRain(){
+petal.className="petal";
 
-    for(let i=0;i<220;i++){
+petal.style.left=Math.random()*100+"vw";
 
-        const petal=document.createElement("img");
+petal.style.width=(20+Math.random()*40)+"px";
 
-        petal.src =
-        petalImages[
-            Math.floor(Math.random()*petalImages.length)
-        ];
+petal.style.opacity=.5+Math.random()*.5;
 
-        const size=12+Math.random()*35;
-        const drift=(Math.random()-0.5)*900;
-        const duration=7000+Math.random()*5000;
-        const rotate=Math.random()*1440-720;
-        const delay=Math.random()*4000;
+petal.style.zIndex="999";
 
-        petal.style.position="fixed";
-        petal.style.left=Math.random()*100+"vw";
-        petal.style.top="-80px";
-        petal.style.width=size+"px";
-        petal.style.pointerEvents="none";
-        petal.style.zIndex="99999";
-        petal.style.opacity="0";
+const duration=5+Math.random()*3;
 
-        document.body.appendChild(petal);
+const drift=(Math.random()-.5)*500;
+
+petal.animate([
+
+{
+
+transform:`translate(0,-80px) rotate(0deg)`,
+
+opacity:0
+
+},
+
+{
+
+opacity:1,
+
+offset:.15
+
+},
+
+{
+
+transform:`translate(${drift}px,${window.innerHeight+250}px)
+rotate(${720+Math.random()*720}deg)`,
+
+opacity:0
+
+}
+
+],{
+
+duration:duration*1000,
+
+easing:"ease-in"
+
+});
+
+document.body.appendChild(petal);
+
+setTimeout(()=>{
+
+petal.remove();
+
+},duration*1000);
+
+},i*25);
+
+}
+
+}
+
+/*=========================================
+FLOATING HEARTS
+=========================================*/
+
+function createHeart(){
+
+const heart=document.createElement("div");
+
+heart.innerHTML="❤️";
+
+heart.style.position="fixed";
+
+heart.style.left=Math.random()*100+"vw";
+
+heart.style.bottom="-50px";
+
+heart.style.fontSize=(18+Math.random()*18)+"px";
+
+heart.style.pointerEvents="none";
+
+heart.style.zIndex="500";
+
+heart.animate([
+
+{
+
+transform:"translateY(0) scale(.8)",
+
+opacity:0
+
+},
+
+{
+
+opacity:1,
+
+offset:.2
+
+},
+
+{
+
+transform:`translateY(-${window.innerHeight+200}px)
+rotate(${Math.random()*180}deg)`,
+
+opacity:0
+
+}
+
+],{
+
+duration:7000,
+
+easing:"linear"
+
+});
+
+document.body.appendChild(heart);
+
+setTimeout(()=>{
+
+heart.remove();
+
+},7000);
+
+}
+
+setInterval(createHeart,1200);
+/*=========================================
+FINAL SURPRISE
+=========================================*/
+
+const surpriseBtn=document.getElementById("surpriseBtn");
+
+const finalPopup=document.getElementById("finalPopup");
+
+const closeFinal=document.getElementById("closeFinal");
+
+const finalMusic=document.getElementById("finalMusic");
+
+surpriseBtn.addEventListener("click",()=>{
+
+    finalPopup.classList.add("show");
+
+    roseRain(180);
+
+    bgMusic.pause();
+
+    finalMusic.currentTime=0;
+    finalMusic.volume=.7;
+    finalMusic.play();
+
+    burstHearts();
+
+});
+
+/*=========================================
+CLOSE FINAL
+=========================================*/
+
+closeFinal.addEventListener("click",()=>{
+
+    finalPopup.classList.remove("show");
+
+});
+
+/*=========================================
+RESTART
+=========================================*/
+
+const restartBtn=document.getElementById("restartBtn");
+
+restartBtn.addEventListener("click",()=>{
+
+    window.scrollTo({
+
+        top:0,
+
+        behavior:"smooth"
+
+    });
+
+});
+
+/*=========================================
+HEART BURST
+=========================================*/
+
+function burstHearts(){
+
+    for(let i=0;i<80;i++){
 
         setTimeout(()=>{
 
-            petal.style.opacity="1";
+            const heart=document.createElement("div");
 
-            petal.animate([
+            heart.innerHTML="❤️";
+
+            heart.style.position="fixed";
+
+            heart.style.left="50%";
+
+            heart.style.top="50%";
+
+            heart.style.fontSize=(18+Math.random()*22)+"px";
+
+            heart.style.pointerEvents="none";
+
+            heart.style.zIndex="9999";
+
+            const x=(Math.random()-.5)*900;
+
+            const y=(Math.random()-.5)*900;
+
+            heart.animate([
 
                 {
 
-                    transform:"translate(0,0) rotate(0deg)",
+                    transform:"translate(0,0) scale(.4)",
+
                     opacity:1
 
                 },
 
                 {
 
-                    transform:`translate(${drift}px,120vh) rotate(${rotate}deg)`,
+                    transform:`translate(${x}px,${y}px) scale(1.5)`,
+
                     opacity:0
 
                 }
 
             ],{
 
-                duration:duration,
-                easing:"ease-in-out",
-                fill:"forwards"
+                duration:2500,
+
+                easing:"ease-out"
 
             });
 
-        },delay);
+            document.body.appendChild(heart);
 
-        setTimeout(()=>{
+            setTimeout(()=>{
 
-            petal.remove();
+                heart.remove();
 
-        },duration+delay);
+            },2500);
+
+        },i*25);
 
     }
 
 }
 
+/*=========================================
+AUTO BACKGROUND ROSE WAVES
+=========================================*/
 
-/* ==========================================
-   MEMORY JAR OPEN
-========================================== */
+setInterval(()=>{
 
-if(openJar){
+    roseRain(35);
 
-    openJar.addEventListener("click",()=>{
+},25000);
 
-        if(memories < maxMemories){
+/*=========================================
+WELCOME EFFECT
+=========================================*/
 
-            alert("Collect all memories first ❤️");
+setTimeout(()=>{
 
-            return;
+    roseRain(50);
+
+},2500);
+
+/*=========================================
+PARALLAX HERO
+=========================================*/
+
+window.addEventListener("scroll",()=>{
+
+    const hero=document.querySelector(".hero");
+
+    hero.style.backgroundPositionY=
+
+    window.scrollY*.3+"px";
+
+});
+
+/*=========================================
+RANDOM GLOW
+=========================================*/
+
+setInterval(()=>{
+
+    document.body.animate([
+
+        {
+
+            filter:"brightness(1)"
+
+        },
+
+        {
+
+            filter:"brightness(1.08)"
+
+        },
+
+        {
+
+            filter:"brightness(1)"
 
         }
 
-        if(bgMusic){
+    ],{
 
-            bgMusic.pause();
-
-            bgMusic.currentTime=0;
-
-        }
-
-        if(finalMusic){
-
-            finalMusic.currentTime=0;
-
-            finalMusic.play().catch(()=>{});
-
-        }
-
-        roseRain();
-
-        setTimeout(()=>{
-
-            roseRain();
-
-        },2500);
-
-        setTimeout(()=>{
-
-            roseRain();
-
-        },5000);
-
-        setTimeout(()=>{
-
-            alert(`🌸 Some memories never fade...
-
-They bloom forever.
-
-❤️ Thank You, Lavanya Das ❤️`);
-
-        },3500);
+        duration:2200
 
     });
 
-}
+},12000);
 
+/*=========================================
+KEYBOARD SHORTCUT
+=========================================*/
 
-/* ==========================================
-   INIT
-========================================== */
+document.addEventListener("keydown",(e)=>{
 
-document.addEventListener("DOMContentLoaded",()=>{
+    if(e.key==="Escape"){
 
-    updateMemoryCounter();
+        imagePopup.classList.remove("show");
 
-    console.log("Dear Lavanya Das ❤️ Loaded");
+        letterPopup.classList.remove("show");
+
+        finalPopup.classList.remove("show");
+
+        envelope.classList.remove("show");
+
+        overlay.classList.remove("show");
+
+    }
 
 });
+
+/*=========================================
+END
+=========================================*/
+
+console.log("🌹 Dear Lavanya Premium V2 Loaded Successfully ❤️");
