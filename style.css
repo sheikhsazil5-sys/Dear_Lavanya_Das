@@ -32,38 +32,46 @@ scroll-behavior:smooth;
 }
 
 body{
+    background:
+    radial-gradient(circle at top,
+    rgba(255,105,180,.18),
+    transparent 45%),
 
-background:var(--bg);
-font-family:'Poppins',sans-serif;
-color:var(--text);
-overflow-x:hidden;
+    radial-gradient(circle at bottom right,
+    rgba(186,85,211,.18),
+    transparent 45%),
 
+    linear-gradient(
+    135deg,
+    #0f0615 0%,
+    #17081d 30%,
+    #220b28 60%,
+    #12060f 100%
+    );
+
+    color:#fff;
+    overflow-x:hidden;
 }
 
 /* Background */
 
 .bg{
+    position:fixed;
+    inset:0;
+    z-index:-3;
 
-position:fixed;
-inset:0;
-z-index:-3;
+    background:
+    radial-gradient(circle at 20% 20%,
+    rgba(255,105,180,.15),
+    transparent 35%),
 
-background:
+    radial-gradient(circle at 80% 70%,
+    rgba(255,182,193,.12),
+    transparent 40%),
 
-radial-gradient(circle at top,#ffe2eb 0%,transparent 38%),
-
-linear-gradient(
-
-180deg,
-
-#fff8f5,
-
-#fff5f6,
-
-#fdeef2
-
-);
-
+    radial-gradient(circle at 50% 100%,
+    rgba(186,85,211,.12),
+    transparent 45%);
 }
 
 /* Petals Layer */
