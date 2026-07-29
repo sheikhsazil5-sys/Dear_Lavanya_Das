@@ -1483,3 +1483,428 @@ button:hover{
     }
 
 }
+/* ==========================================
+   LOVE LETTER SECTION
+========================================== */
+
+.letter{
+
+    text-align:center;
+
+}
+
+.letter h2{
+
+    color:#fff;
+
+    margin-bottom:20px;
+
+}
+
+/* ==========================================
+   LETTER PAPER
+========================================== */
+
+.letter-box{
+
+    position:relative;
+
+    max-width:760px;
+
+    margin:50px auto;
+
+    padding:55px;
+
+    background:linear-gradient(
+        180deg,
+        #fffdf9 0%,
+        #fffaf3 100%
+    );
+
+    border-radius:24px;
+
+    border:1px solid #f1e5c8;
+
+    box-shadow:
+        0 30px 70px rgba(0,0,0,.18);
+
+    overflow:hidden;
+
+}
+
+/* Folded Corner */
+
+.letter-box::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+    right:0;
+
+    width:90px;
+    height:90px;
+
+    background:linear-gradient(
+        135deg,
+        transparent 50%,
+        #ece1c5 50%
+    );
+
+}
+
+/* Wax Seal */
+
+.letter-box::after{
+
+    content:"❤";
+
+    position:absolute;
+
+    left:50%;
+    bottom:-24px;
+
+    transform:translateX(-50%);
+
+    width:58px;
+    height:58px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    border-radius:50%;
+
+    background:#d64d79;
+
+    color:#fff;
+
+    font-size:24px;
+
+    box-shadow:
+        0 12px 30px rgba(214,77,121,.45);
+
+}
+
+/* ==========================================
+   LETTER TEXT
+========================================== */
+
+.letter-box p{
+
+    font-family:'Dancing Script',cursive;
+
+    font-size:30px;
+
+    line-height:2;
+
+    color:#5b4b45;
+
+}
+
+/* ==========================================
+   READ MORE
+========================================== */
+
+#readMore{
+
+    margin-top:35px;
+
+}
+
+/* Hidden Letter */
+
+#hiddenLetter{
+
+    max-height:0;
+
+    overflow:hidden;
+
+    transition:1s ease;
+
+    margin-top:25px;
+
+}
+
+#hiddenLetter.open{
+
+    max-height:900px;
+
+}
+
+#hiddenText{
+
+    font-family:'Dancing Script',cursive;
+
+    font-size:30px;
+
+    color:#5b4b45;
+
+    line-height:2;
+
+    animation:fadeLetter 1s ease;
+
+}
+
+/* ==========================================
+   LETTER ANIMATION
+========================================== */
+
+@keyframes fadeLetter{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(30px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media(max-width:768px){
+
+    .letter-box{
+
+        padding:35px 25px;
+
+    }
+
+    .letter-box p{
+
+        font-size:24px;
+
+    }
+
+    #hiddenText{
+
+        font-size:24px;
+
+    }
+
+}
+/* ==========================================
+   MEMORY JAR
+========================================== */
+
+.memory-jar{
+
+    text-align:center;
+
+}
+
+.memory-jar h2{
+
+    color:#fff;
+
+    margin-bottom:18px;
+
+}
+
+.memory-jar>p{
+
+    max-width:700px;
+
+    margin:0 auto 50px;
+
+    color:#f6dce7;
+
+    line-height:1.9;
+
+}
+
+/* ==========================================
+   JAR CONTAINER
+========================================== */
+
+.jar{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    margin:50px 0;
+
+}
+
+/* ==========================================
+   GLASS JAR
+========================================== */
+
+.jar-glass{
+
+    position:relative;
+
+    width:220px;
+
+    height:290px;
+
+    overflow:hidden;
+
+    border-radius:35px 35px 60px 60px;
+
+    background:rgba(255,255,255,.08);
+
+    backdrop-filter:blur(22px);
+    -webkit-backdrop-filter:blur(22px);
+
+    border:2px solid rgba(255,255,255,.15);
+
+    box-shadow:
+        0 25px 60px rgba(0,0,0,.30),
+        inset 0 0 25px rgba(255,255,255,.08);
+
+}
+
+/* Jar Neck */
+
+.jar-glass::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:-18px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    width:110px;
+
+    height:36px;
+
+    border-radius:18px;
+
+    background:rgba(255,255,255,.15);
+
+    border:2px solid rgba(255,255,255,.18);
+
+}
+
+/* Shine */
+
+.jar-glass::after{
+
+    content:"";
+
+    position:absolute;
+
+    top:20px;
+
+    left:22px;
+
+    width:24px;
+
+    height:220px;
+
+    border-radius:50px;
+
+    background:rgba(255,255,255,.15);
+
+    filter:blur(2px);
+
+}
+
+/* ==========================================
+   HEARTS
+========================================== */
+
+#jarHearts{
+
+    position:absolute;
+
+    inset:0;
+
+}
+
+.jar-heart{
+
+    position:absolute;
+
+    font-size:24px;
+
+    animation:heartPop .45s ease;
+
+}
+
+/* ==========================================
+   COUNTER
+========================================== */
+
+.counter{
+
+    margin:35px 0;
+
+    color:#ff82b2;
+
+    font-size:22px;
+
+    font-weight:600;
+
+}
+
+/* ==========================================
+   BUTTON
+========================================== */
+
+#openJar{
+
+    margin-top:10px;
+
+}
+
+/* ==========================================
+   HEART ANIMATION
+========================================== */
+
+@keyframes heartPop{
+
+    from{
+
+        opacity:0;
+
+        transform:scale(.2);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:scale(1);
+
+    }
+
+}
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media(max-width:768px){
+
+    .jar-glass{
+
+        width:180px;
+
+        height:250px;
+
+    }
+
+}
