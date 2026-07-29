@@ -1734,3 +1734,45 @@ visibility:hidden;
     }
 
 }
+/* ===== Premium Glass Section ===== */
+
+.glass-section{
+
+    position:relative;
+
+    background:rgba(255,255,255,.06);
+
+    backdrop-filter:blur(24px);
+    -webkit-backdrop-filter:blur(24px);
+
+    border:1px solid rgba(255,255,255,.10);
+
+    border-radius:40px;
+
+    box-shadow:
+    0 25px 70px rgba(0,0,0,.35),
+    0 0 60px rgba(255,105,180,.12);
+
+    overflow:hidden;
+
+    transition:.4s;
+
+}
+
+.glass-section::before{
+
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    background:linear-gradient(
+        135deg,
+        rgba(255,255,255,.10),
+        rgba(255,105,180,.04),
+        rgba(255,255,255,.02)
+    );
+
+    pointer-events:none;
+
+}
