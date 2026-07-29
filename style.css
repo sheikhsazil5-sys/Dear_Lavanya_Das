@@ -2017,3 +2017,53 @@ opacity:0;
 visibility:hidden;
 
 }                          
+/* ==========================================
+   FLOATING LIGHT PARTICLES
+========================================== */
+
+.lights{
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: -2;
+}
+
+.light{
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.95);
+
+    box-shadow:
+        0 0 8px rgba(255,255,255,.9),
+        0 0 18px rgba(255,170,210,.7),
+        0 0 30px rgba(255,120,180,.45);
+
+    opacity: 0;
+
+    animation: floatLight linear forwards;
+}
+
+@keyframes floatLight{
+
+    0%{
+        transform: translateY(110vh) translateX(0) scale(.4);
+        opacity:0;
+    }
+
+    20%{
+        opacity:.8;
+    }
+
+    50%{
+        transform: translateY(45vh) translateX(25px) scale(.8);
+    }
+
+    100%{
+        transform: translateY(-120px) translateX(-25px) scale(1.2);
+        opacity:0;
+    }
+
+}
