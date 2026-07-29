@@ -483,7 +483,7 @@ finalMusic.play().catch(()=>{});
     },3500);
 
 });
-alert("Script Loaded");
+
 // ================= LOADER =================
 
 window.addEventListener("load",()=>{
