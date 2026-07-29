@@ -12,6 +12,41 @@ I hope this little surprise brings a smile to your face.
 ❤️`;
 
 const petals = document.querySelector(".petals");
+
+// ===============================
+// Floating Light Particles
+// ===============================
+
+const lights = document.querySelector(".lights");
+
+function createLight(){
+
+    if(!lights) return;
+
+    const light = document.createElement("div");
+
+    light.classList.add("light");
+
+    const size = Math.random() * 5 + 3;
+
+    light.style.width = size + "px";
+    light.style.height = size + "px";
+
+    light.style.left = Math.random() * 100 + "vw";
+
+    light.style.animationDuration =
+        (8 + Math.random() * 6) + "s";
+
+    lights.appendChild(light);
+
+    setTimeout(() => {
+        light.remove();
+    }, 15000);
+
+}
+
+setInterval(createLight, 600);
+
 function typePopupLetter(){
 
     const letter = document.getElementById("popupLetter");
