@@ -119,6 +119,8 @@ max-width:620px;
 
 padding:70px 45px;
 
+outline: 2px solid red;   
+   
 text-align:center;
 
 background: rgba(255,255,255,0.08);
