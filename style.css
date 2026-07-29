@@ -156,26 +156,32 @@ animation:fadeUp 1.3s ease;
 .glass-card::after{
     content:"";
     position:absolute;
-    width:350px;
-    height:350px;
+   width: 450px;
+height: 450px;
     border-radius:50%;
-    background:radial-gradient(circle,
-        rgba(255,105,180,.22),
-        transparent 70%);
-    filter:blur(50px);
-    top:-120px;
-    right:-120px;
+    background: radial-gradient(
+    circle,
+    rgba(255,105,180,.28),
+    rgba(186,85,211,.12),
+    transparent 75%
+    filter: blur(80px);
+
+top: -150px;
+right: -150px;
     animation: glowMove 8s ease-in-out infinite alternate;
     z-index:-1;
 }
 
 @keyframes glowMove{
+
     from{
-        transform:translate(-20px,-10px) scale(1);
+        transform: translate(-30px,-20px) scale(1);
     }
+
     to{
-        transform:translate(20px,20px) scale(1.2);
+        transform: translate(30px,25px) scale(1.25);
     }
+
 }
 
 /* Small Tag */
