@@ -45,13 +45,13 @@ function createLight() {
 
     const size = Math.random() * 5 + 3;
 
-    light.style.width = `${size}px`;
-    light.style.height = `${size}px`;
+    light.style.width = size + "px";
+    light.style.height = size + "px";
 
-    light.style.left = `${Math.random() * 100}vw`;
+    light.style.left = Math.random() * 100 + "vw";
 
     light.style.animationDuration =
-        `${8 + Math.random() * 6}s`;
+        (8 + Math.random() * 6) + "s";
 
     lightsContainer.appendChild(light);
 
@@ -64,30 +64,97 @@ function createLight() {
 }
 
 /* ==========================================
-   FALLING PETALS
+   IMAGE ROSE PETALS
 ========================================== */
+
+const petalImages = [
+
+    "assets/images/petal1.png",
+    "assets/images/petal2.png",
+    "assets/images/petal3.png",
+    "assets/images/petal4.png"
+
+];
 
 function createPetal() {
 
     if (!petalsContainer) return;
 
-    const petal = document.createElement("div");
+    const petal = document.createElement("img");
+
+    petal.src =
+        petalImages[
+            Math.floor(Math.random() * petalImages.length)
+        ];
 
     petal.className = "petal";
 
-    petal.style.left =
-        `${Math.random() * 100}vw`;
+    const size = 18 + Math.random() * 20;
 
-    petal.style.animationDuration =
-        `${8 + Math.random() * 5}s`;
+    petal.style.width = size + "px";
+
+    petal.style.left = Math.random() * 100 + "vw";
+
+    petal.style.top = "-60px";
+
+    petal.style.position = "fixed";
+
+    petal.style.pointerEvents = "none";
+
+    petal.style.userSelect = "none";
+
+    petal.style.zIndex = "-1";
+
+    petal.style.opacity = "0.95";
+
+    const drift = (Math.random() - 0.5) * 250;
+
+    const rotate = Math.random() * 720 - 360;
+
+    const duration = 9000 + Math.random() * 5000;
 
     petalsContainer.appendChild(petal);
+
+    petal.animate(
+
+        [
+
+            {
+
+                transform: "translate(0,0) rotate(0deg)",
+
+                opacity: 1
+
+            },
+
+            {
+
+                transform:
+                    `translate(${drift}px,120vh) rotate(${rotate}deg)`,
+
+                opacity: 0
+
+            }
+
+        ],
+
+        {
+
+            duration: duration,
+
+            easing: "linear",
+
+            fill: "forwards"
+
+        }
+
+    );
 
     setTimeout(() => {
 
         petal.remove();
 
-    }, 13000);
+    }, duration);
 
 }
 
@@ -97,8 +164,7 @@ function createPetal() {
 
 setInterval(createLight, 600);
 
-setInterval(createPetal, 500);
-
+setInterval(createPetal, 450);
 /* ==========================================
    PART 2
    HERO + ENVELOPE + TYPEWRITER
