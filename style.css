@@ -8,15 +8,23 @@
 
 :root{
 
---bg:#FFF8F5;
---card:#ffffffa6;
---rose:#E75480;
---text:#4B3742;
---light:#7d6772;
---shadow:0 25px 60px rgba(231,84,128,.15);
+--primary:#E75480;
+--primary-dark:#C74375;
+--primary-light:#F8A9C4;
+
+--bg1:#FFF9FB;
+--bg2:#FDEEF4;
+--bg3:#F7DCE8;
+
+--glass:rgba(255,255,255,.50);
+--border:rgba(255,255,255,.35);
+
+--text:#3D2730;
+--text-light:#6E5560;
+
+--shadow:0 20px 60px rgba(231,84,128,.12);
 
 }
-
 *{
 
 margin:0;
@@ -50,18 +58,24 @@ z-index:-3;
 
 background:
 
-radial-gradient(circle at top,#ffe2eb 0%,transparent 38%),
+radial-gradient(circle at 20% 10%,
+rgba(255,170,200,.55),
+transparent 32%),
+
+radial-gradient(circle at 80% 20%,
+rgba(255,215,228,.45),
+transparent 35%),
+
+radial-gradient(circle at bottom,
+rgba(245,175,205,.28),
+transparent 40%),
 
 linear-gradient(
-
 180deg,
-
-#fff8f5,
-
-#fff5f6,
-
-#fdeef2
-
+#FFFDFE,
+#FFF6FA,
+#FDECF3,
+#F8DEE8
 );
 
 }
@@ -95,33 +109,55 @@ align-items:center;
 padding:30px;
 
 }
+.hero-title{
 
-/* Card */
+color:#E75480;
 
-.glass-card{
+text-shadow:
 
-width:100%;
-
-max-width:620px;
-
-padding:70px 45px;
-
-text-align:center;
-
-background:var(--card);
-
-backdrop-filter:blur(18px);
-
-border-radius:32px;
-
-border:1px solid rgba(255,255,255,.8);
-
-box-shadow:var(--shadow);
-
-animation:fadeUp 1.3s ease;
+0 8px 20px rgba(231,84,128,.15);
 
 }
 
+/* Card */
+.glass-card{
+
+position:relative;
+
+overflow:hidden;
+
+background:rgba(255,255,255,.45);
+
+backdrop-filter:blur(22px);
+
+border:1px solid rgba(255,255,255,.45);
+
+box-shadow:0 25px 60px rgba(231,84,128,.12);
+
+}
+
+.glass-card::before{
+
+content:"";
+
+position:absolute;
+
+inset:0;
+
+border-radius:inherit;
+
+background:linear-gradient(
+120deg,
+rgba(255,255,255,.45),
+transparent,
+rgba(255,255,255,.25)
+);
+
+pointer-events:none;
+
+opacity:.5;
+
+}
 /* Small Tag */
 
 .tag{
@@ -190,26 +226,24 @@ color:var(--light);
 
 /* Button */
 
-button{
+background:
 
-margin-top:35px;
-
-padding:18px 55px;
-
-border:none;
-
-border-radius:999px;
-
-background:linear-gradient(
+linear-gradient(
 
 135deg,
 
+#F06B98,
+
 #E75480,
 
-#F08EAF
+#C74375
 
 );
 
+box-shadow:
+
+0 15px 40px rgba(231,84,128,.22);
+   
 color:white;
 
 font-size:16px;
