@@ -509,23 +509,26 @@ function activateSong(index){
 
 }
 
-document.getElementById("playMusic").addEventListener("click",()=>{
+const playBtn = document.getElementById("playMusic");
+
+playBtn.addEventListener("click", function(){
 
     if(currentSong===1){
 
         if(bgMusic.paused){
 
+            finalMusic.pause();
+            finalMusic.currentTime=0;
+
             bgMusic.play();
 
-            finalMusic.pause();
-
-            this.innerHTML="⏸";
+            playBtn.innerHTML="⏸ Pause";
 
         }else{
 
             bgMusic.pause();
 
-            this.innerHTML="▶";
+            playBtn.innerHTML="▶ Play";
 
         }
 
@@ -533,24 +536,24 @@ document.getElementById("playMusic").addEventListener("click",()=>{
 
         if(finalMusic.paused){
 
+            bgMusic.pause();
+            bgMusic.currentTime=0;
+
             finalMusic.play();
 
-            bgMusic.pause();
-
-            this.innerHTML="⏸";
+            playBtn.innerHTML="⏸ Pause";
 
         }else{
 
             finalMusic.pause();
 
-            this.innerHTML="▶";
+            playBtn.innerHTML="▶ Play";
 
         }
 
     }
 
 });
-
 document.getElementById("nextSong").addEventListener("click",()=>{
 
     bgMusic.pause();
