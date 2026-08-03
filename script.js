@@ -483,7 +483,7 @@ finalMusic.play().catch(()=>{});
     },3500);
 
 });
-alert("Script Loaded");
+
 // ================= LOADER =================
 
 window.addEventListener("load",()=>{
@@ -495,3 +495,124 @@ document.getElementById("loader").classList.add("loader-hide");
 },3000);
 
 });
+// ================= PLAYLIST =================
+
+const tracks = document.querySelectorAll(".track");
+
+let currentSong = 1;
+
+function activateSong(index){
+
+    tracks.forEach(track=>track.classList.remove("active"));
+
+    tracks[index-1].classList.add("active");
+
+}
+
+document.getElementById("playMusic").addEventListener("click",()=>{
+
+    if(currentSong===1){
+
+        if(bgMusic.paused){
+
+            bgMusic.play();
+
+            finalMusic.pause();
+
+            this.innerHTML="⏸";
+
+        }else{
+
+            bgMusic.pause();
+
+            this.innerHTML="▶";
+
+        }
+
+    }else{
+
+        if(finalMusic.paused){
+
+            finalMusic.play();
+
+            bgMusic.pause();
+
+            this.innerHTML="⏸";
+
+        }else{
+
+            finalMusic.pause();
+
+            this.innerHTML="▶";
+
+        }
+
+    }
+
+});
+
+document.getElementById("nextSong").addEventListener("click",()=>{
+
+    bgMusic.pause();
+
+    finalMusic.pause();
+
+    bgMusic.currentTime=0;
+
+    finalMusic.currentTime=0;
+
+    currentSong++;
+
+    if(currentSong>2) currentSong=1;
+
+    activateSong(currentSong);
+
+});
+
+document.getElementById("prevSong").addEventListener("click",()=>{
+
+    bgMusic.pause();
+
+    finalMusic.pause();
+
+    bgMusic.currentTime=0;
+
+    finalMusic.currentTime=0;
+
+    currentSong--;
+
+    if(currentSong<1) currentSong=2;
+
+    activateSong(currentSong);
+
+});
+
+tracks.forEach(track=>{
+
+    track.addEventListener("click",()=>{
+
+        currentSong=Number(track.dataset.song);
+
+        activateSong(currentSong);
+
+    });
+
+});
+
+bgMusic.onended=()=>{
+
+    currentSong=2;
+
+    activateSong(2);
+
+    finalMusic.play();
+
+};
+
+finalMusic.onended=()=>{
+
+    currentSong=1;
+
+    activateSong(1);
+
+};
